@@ -1,6 +1,8 @@
 package com.blog;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.blog.model.Answer;
 import com.blog.model.Question;
@@ -13,6 +15,11 @@ public class GenerateJSON {
             question.setTitle("How to create Spring Boot application");
             question.setAuthor("Pranab Paul");
             question.setDescription("I want to understand how to create spring boot application");
+            List<String> tags = new ArrayList<>();
+            tags.add("Maven");
+            question.setTags(tags);
+            question.setPostedDate("09-02-2025");
+
 
             Answer answer = new Answer();
             answer.setAuthor("Pranab Paul");

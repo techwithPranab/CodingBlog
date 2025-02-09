@@ -12,8 +12,11 @@ public class Question {
     private String title;
     private String description;
     private String author;
+    private String postedDate;
+    private String lastUpdatedDate;
     private List<String> tags;
     private List<Answer> answers;
+    private int viewCount;
 
     // Getters and Setters
 
@@ -63,5 +66,29 @@ public class Question {
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
+    }
+
+    public String getPostedDate() {
+        return postedDate;
+    }
+
+    public void setPostedDate(String postedDate) {
+        this.postedDate = postedDate;
+    }
+
+    public String getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(String lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 }
