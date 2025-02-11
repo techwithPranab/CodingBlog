@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,9 @@ public class QuestionController {
     // Post a new question
     @PostMapping("/questions")
     public Question createQuestion(@RequestBody Question question) {
+        Date currDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        question.setPostedDate(formatter.format(currDate));
         return questionRepository.save(question);
     }
 
@@ -101,16 +105,19 @@ public class QuestionController {
     @GetMapping("/questionByTitle")
     public List<Question> findQuestionByDesc(@RequestParam String desc){
         System.out.println("Inside method "+desc);
+        Sort sort = Sort.by(Sort.Order.desc("postedDate"));
         return questionRepository.findByTitleLike(desc);
     }
 
     @GetMapping("/questionByAuthor")
     public List<Question> findQuestionByAuthor(@RequestParam String author){
-        return questionRepository.findByAuthor(author);
+        Sort sort = Sort.by(Sort.Order.desc("postedDate"));
+        return questionRepository.findByAuthor(author,sort);
     }
 
     @GetMapping("/answeredByAuthor")
     public List<Question> findQuestionByAnswered(@RequestParam String author){
-        return questionRepository.findQuestionByAnswerd(author);
+        Sort sort = Sort.by(Sort.Order.desc("postedDate"));
+        return questionRepository.findQuestionByAnswerd(author,sort);
     }
 }
